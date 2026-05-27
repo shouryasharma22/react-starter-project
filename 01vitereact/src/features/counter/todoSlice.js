@@ -1,30 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
+  todos:[{id:1, title:'learn redux'}],
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const todoSlice = createSlice({
+  name: 'todo',
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+    addTodo: (state, action) => {
+      const todo={id:nanoid(), title:action.payload}
+      state.todos.push(todo)
     },
-    decrement: (state) => {
-      state.value -= 1
+    removeTodo: (state, action) => {
+      state.todos=state.todos.filter(todo=>todo.id!==action.payload)
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    updateTodo: (state, action) => {
+      const todo=state.todos.find(todo=>todo.id===action.payload.nanoid)
+      if(todo){
+        state.todos[todo].title=action.payload.title
+      }
     },
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-export default counterSlice.reducer
+export const {addTodo, removeTodo, updateTodo}= todoSlice.actions
+export default todoSlice.reducer

@@ -1,14 +1,17 @@
 import { useState } from 'react'
-
+import AddTodo from './components/addTodo'
 import './App.css'
-import Homepage from './homepage'
-
-
+import Todo from './components/todos'
 function App() {
   return (
-   <>
-   <Homepage />
-   </>
+    <>
+    <div className="bg-slate-500 min-h-screen flex justify-center items-start pt-10">
+    <div className="w-[350px]">
+      <AddTodo />
+      <Todo />
+    </div>
+    </div>
+    </>
   )
 }
 
