@@ -1,9 +1,8 @@
 import {useSelector , useDispatch} from 'react-redux'
-import reducer from '../features/counter/todoSlice'
-
+import { removeTodo } from '../features/counter/todoSlice'
 function Todos(){
-    const select=useSelector(state=>state.todos)
-const dispatch=useDispatch(state=>state.todos)
+    const select=useSelector(state=>state.todo.todos)
+    const dispatch=useDispatch()
       return(    
     <>
     <h2 className="text-center text-black mb-4 font-medium">

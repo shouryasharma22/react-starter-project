@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { nanoid } from '@reduxjs/toolkit'
 const initialState = {
   todos:[{id:1, title:'learn redux'}],
 }
@@ -16,9 +16,10 @@ export const todoSlice = createSlice({
       state.todos=state.todos.filter(todo=>todo.id!==action.payload)
     },
     updateTodo: (state, action) => {
-      const todo=state.todos.find(todo=>todo.id===action.payload.nanoid)
+      const {id , title}=action.payload
+      const todo=state.todos.find(todo=>todo.id===id)
       if(todo){
-        state.todos[todo].title=action.payload.title
+        todo.title=title
       }
     },
   },
