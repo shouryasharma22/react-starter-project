@@ -1,5 +1,6 @@
 import {useSelector , useDispatch} from 'react-redux'
 import {addTodo} from '../features/counter/todoSlice'
+import { useState } from 'react'
 function AddTodo() {
   const dispatch=useDispatch()
   const [input, setInput] = useState("")
@@ -17,8 +18,9 @@ function AddTodo() {
       <button
         className="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-3 rounded font-medium transition"
         onClick={() => {
-          if (todoText) {
-            dispatch(addTodo(todoText));
+
+          if (input) {
+            dispatch(addTodo(input));
             setInput("")
           }
         }}
